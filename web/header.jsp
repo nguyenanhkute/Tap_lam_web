@@ -1,125 +1,249 @@
 <%-- 
     Document   : header
-    Created on : Oct 14, 2018, 8:54:35 PM
-    Author     : N
+    Created on : Oct 2, 2018, 6:08:15 PM
+    Author     : Nguyen
 --%>
 
+<%@page import="model.Product"%>
+<%@page import="DAO.ProductDAO"%>
+<%@page import="model.Cart"%>
+<%@page import="DAO.UserDAO"%>
+<%@page import="DAO.CustomerDAO"%>
+<%@page import="model.User"%>
+<%@page import="DAO.CategoryDAO"%>
+<%@page import="model.Category"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/jsp; charset=UTF-8">
         <title>header</title>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Custom Theme files -->
+        <!--theme-style-->
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+        <!--//theme-style-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!--fonts-->
+        <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+        <!--//fonts-->
+        <script type="text/javascript" src="js/move-top.js"></script>
+        <script type="text/javascript" src="js/easing.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+                    $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+                });
+            });
+        </script>
+        <!--slider-script-->
+        <script src="js/responsiveslides.min.js"></script>
+        <script>
+            $(function () {
+                $("#slider1").responsiveSlides({
+                    auto: true,
+                    speed: 500,
+                    namespace: "callbacks",
+                    pager: true,
+                });
+            });
+        </script>
+        <!--//slider-script-->
+        <script>$(document).ready(function (c) {
+                $('.alert-close').on('click', function (c) {
+                    $('.message').fadeOut('slow', function (c) {
+                        $('.message').remove();
+                    });
+                });
+            });
+        </script>
+        <script>$(document).ready(function (c) {
+                $('.alert-close1').on('click', function (c) {
+                    $('.message1').fadeOut('slow', function (c) {
+                        $('.message1').remove();
+                    });
+                });
+            });
+        </script>
+        
+
+        <script>$('#searchID').keypress(function(event) {
+         var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+              alert('Bạn vừa nhấn phím "enter" trên trang web');
+            }
+        });
+        </script>
     </head>
     <body>
-        <div class="header">
-		<div class="header-top">
-                    <div class="container">	
-			<div class="header-top-in">			
-				<div class="logo">
-					<a href="index.html"><img src="images/logo_2.png" alt="" ></a>
-				</div>
-				<div class="header-in">
-					<ul class="icon1 sub-icon1">
-						<li><a href="about.html">Thông tin</a></li>	
-                                                <li><a href="contact.html">Hỗ trợ</a></li>
-                                                <li><a href="checkout.html">Giỏ hàng (<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)<img src="images/gio hang.png" alt=""> </a></li>   
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-                    </div>
-		</div>
-		<div class="header-bottom">
-		<div class="container">
-			<div class="h_menu4">
-				<a class="toggleMenu" href="#">Menu</a>
-				<ul class="nav">
-					<li class="active"><a href="index.jsp"><i> </i>Trang chủ </a></li>
-                                            <li ><a href="products.html" >Các loại bánh</a>
-                                                <ul class="drop">
-							<li><a href="products.html">Bánh chưng</a></li>
-							<li><a href="products.html">Bánh tét</a></li>
-							<li><a href="products.html">Bánh In </a></li>
-							<li><a href="products.html">Bánh đậu xanh</a></li>
-							<li><a href="products.html">Bánh quy</a></li>
-							<li><a href="products.html">Bánh phu thê</a></li>
-						</ul>
-						</li> 						
-                                            <li><a href="products.html" >  Mứt Tết</a>
-                                                 <ul class="drop">
-                                                        <li><a href="products.html">Mứt gừng</a></li>
-							<li><a href="products.html">Mứt dừa</a></li>
-							<li><a href="products.html">Mứt bí</a></li>
-							<li><a href="products.html">Mứt cà rốt</a></li>
-							<li><a href="products.html">Mứt trứng chim</a></li>
-							<li><a href="products.html">Mứt đậu phộng</a></li>
-                                                    </ul>
-                                                </li>            
-						<li><a href="products.html" >Đồ trang trí Tết</a>
-                                                    <ul class="drop">
-							<li><a href="products.html">Câu đối</a></li>
-							<li><a href="products.html">Giây may mắn</a></li>
-							<li><a href="products.html">Hoa Tết</a></li>
-							<li><a href="products.html">Lồng đèn</a></li>
-							<li><a href="products.html">Tranh Tết</a></li>
-                                                    </ul>
-                                                </li>
-						<li><a href="products.html" >Các loại hạt</a>
-                                                    <ul class="drop">
-							<li><a href="products.html">Hạt điều</a></li>
-							<li><a href="products.html">Hạt hướng dương </a></li>
-							<li><a href="products.html">Hạt dẻ</a></li>
-							<li><a href="products.html">Hạt dưa đỏ</a></li>
-							<li><a href="products.html">Hạt bí</a></li>
-                                                    </ul>
-                                                </li>                                                
-						<li><a href="products.html" >Hoa tươi ngày Tết </a>
-                                                    <ul class="drop">
-							<li><a href="products.html">Hoa cúc</a></li>
-							<li><a href="products.html">Hoa Lay ơn</a></li>
-							<li><a href="products.html">Hoa đồng tiền</a></li>
-							<li><a href="products.html">Hoa lan</a></li>
-							<li><a href="products.html">Hoa ly</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="products.html" >Các loại khác </a>
-                                                    <ul class="drop">
-                                                        <li><a href="procuct.html">Khay đựng bánh kẹo</a></li>
-                                                        <li><a href="procuct.html">Phong bao lì xì</a></li>
-                                                    </ul>
-                                                </li>
-                                                
-				</ul>
-				<script type="text/javascript" src="js/nav.js"></script>
-			</div>
-		</div>
-		</div>
-		<div class="header-bottom-in">
-			<div class="container">
-			<div class="header-bottom-on">
-                            <p class="wel"><a href="#">TÌM KIẾM NHANH </a></p>
-			<div class="header-can">
-				<ul class="social-in"></ul>
-						
-					<div class="down-top">		
-							<select class="in-drop">
-							  <option value="Dollars" class="in-of">Dollars</option>
-							  <option value="Euro" class="in-of">Euro</option>
-							  <option value="Yen" class="in-of">Yen</option>
-							</select>
-					 </div>
-					<div class="search">
-						<form>
-							<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
-							<input type="submit" value="">
-						</form>
-					</div>
-                                
+        
+       
+        
+        
+        <div class="wrap-box"></div>
+            <div class="header_bottom">
+                    <div class="container">
+                        <div class="col-xs-8 header-bottom-left">
+                                <div class="col-xs-2 logo">
+                                    <h1><a href="index.jsp"><span>Tet's </span>shop</a></h1>
+                                </div>
+                                <div class="col-xs-6 menu">
+                                    <ul class="megamenu skyblue">
                                         
-			</div>
-		</div>
-		</div>
-		</div>
-	</div>
+                                            <li class="grid"><a class="color1" >Trang trí</a><div class="megapanel">
+                                                        <div class="row">
+                                                                <div class="coll">
+                                                                        <div class="h_nav">
+                                                                            <ul>
+                                                                                <%
+                                                                                    CategoryDAO categoryDAO = new CategoryDAO();
+                                                                                    
+                                                                                    for(Category c: categoryDAO.getListCategoryByDirectory(String.valueOf("DM00004")) ) {
+                                                                                %>
+                                                                                        <li><a href="product.jsp?category=<%=c.getCategoryID()%>&pages=1"> <%=c.getCategoryName()%></a></li>
+                                                                                <%
+                                                                                    }
+                                                                                %>
+                                                                            </ul>
+                                                                        </div>	
+                                                                </div>
+                                                        </div>
+                                                  </div>
+                                             </li>
+                                            <li class="grid"><a class="color2" >Bánh kẹo</a><div class="megapanel">                             
+                                                        <div class="row">
+                                                                <div class="col1">
+                                                                        <div class="h_nav">
+                                                                                <ul>
+                                                                                <%
+                                                                                   
+                                                                                    
+                                                                                    for(Category c: categoryDAO.getListCategoryByDirectory(String.valueOf("DM00001")) ) {
+                                                                                %>
+                                                                                        <li><a href="product.jsp?category=<%=c.getCategoryID()%>&pages=1"> <%=c.getCategoryName()%></a></li>
+                                                                                <%
+                                                                                    }
+                                                                                %>
+                                                                                        
+                                                                                </ul>	
+                                                                        </div>							
+                                                                </div>
+                                                                
+                                                          </div>
+                                                        </div>
+                                             </li>
+                                            <li class="grid"><a class="color3" >Mức</a><div class="megapanel">                             
+                                                        <div class="row">
+                                                                <div class="col1">
+                                                                        <div class="h_nav">
+                                                                                <ul>
+                                                                                <%
+                                                                                    
+                                                                                    
+                                                                                    for(Category c: categoryDAO.getListCategoryByDirectory(String.valueOf("DM00003")) ) {
+                                                                                %>
+                                                                                        <li><a href="product.jsp?category=<%=c.getCategoryID()%>&pages=1"> <%=c.getCategoryName()%></a></li>
+                                                                                <%
+                                                                                    }
+                                                                                %>
+                                                                                        
+                                                                                </ul>	
+                                                                        </div>							
+                                                                </div>
+                                                                
+                                                          </div>
+                                                        </div>
+                                             </li>
+                                            <li class="grid"><a class="color4">Hoa tết</a><div class="megapanel">                             
+                                                        <div class="row">
+                                                                <div class="col1">
+                                                                        <div class="h_nav">
+                                                                                <ul>
+                                                                                <%
+                                                                                    
+                                                                                    
+                                                                                    for(Category c: categoryDAO.getListCategoryByDirectory(String.valueOf("DM00002")) ) {
+                                                                                %>
+                                                                                        <li><a href="product.jsp?category=<%=c.getCategoryID()%>&pages=1"> <%=c.getCategoryName()%></a></li>
+                                                                                <%
+                                                                                    }
+                                                                                %>
+                                                                                </ul>	
+                                                                        </div>							
+                                                                </div>
+                                                                
+                                                          </div>
+                                                        </div>
+                                             </li>
+                                           			
+                                           
+                                            <li><a class="color6" href="contact.jsp">Hỗ trợ</a></li>
+                                    </ul>
+                                    </div>
+                              </div>
+                        
+                    
+                   
+                    <div class="col-xs-4 header-bottom-right">
+                        <%
+                            //UserDAO usdao = new UserDAO();
+                            User user = null;
+                            if (session.getAttribute("user") != null)
+                            {
+                                user = (User) session.getAttribute("user");
+                            }
+
+                        %>
+                        <div class="cssmenu">
+			<ul>
+                           <%if (user == null) {%>
+                           <li><a href="login.jsp">Đăng nhập</a></li> 
+                           <%}%>
+                           <%if (user != null) {%>
+                           <li><a href="login.jsp"><%=new UserDAO().getCustomerNameByID(user.getCustomerID())%></a></li> 
+                           <%}%>
+			</ul>
+                        </div>
+                        
+                        <div class="box_1-cart">
+                            <%
+                                Cart cart = null;
+                            if (session.getAttribute("cart") != null)
+                            {
+                                cart = (Cart) session.getAttribute("cart");
+                            }
+                            %>
+                             <div class="box_11"><a href="checkout.jsp">
+                                     <%if ( cart != null ) {%>
+                                     <h4><p>Giỏ hàng (<span><%=cart.countItem()%></span>)</p>
+                                     <% }%>
+                                  <img src="images/bag.png" alt=""/>
+                                  <div class="clearfix"> </div>
+                              </h4>
+                              </a></div>
+                          <div class="clearfix"> </div>
+                        </div>
+                        <div class="search">	 
+                            
+                            <form  action="SearchServlet" method = "POST">
+                                <input type="text" id="searchID" name="search" class="textbox" value="Tìm kiếm" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm';}"  >
+
+                                <div id="response"> </div>
+                            </form>
+                        </div>
+                        
+                        <div class="clearfix"></div>
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    
     </body>
 </html>

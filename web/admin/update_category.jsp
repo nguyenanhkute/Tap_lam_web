@@ -31,9 +31,12 @@
         </script>
     </head>
     <body>
-        <form name="myForm" action="/WebApplication1/ManagerCategoryServlet" method="toGet">
+        <form name="myForm" action="/shop/AdminCategoryServlet" method="POST">
             <%--bắt lỗi khi nhập tên loại sp--%>
         <%
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+            
             String error="";
             if(request.getParameter("error")!=null)
             {

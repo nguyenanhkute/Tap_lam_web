@@ -5,17 +5,16 @@
  */
 package model;
 
+import java.sql.Timestamp;
 import java.sql.Date;
 
 /**
  *
- * @author N
+ * @author Nguyen
  */
 public class Bill {
     private String billID;
     private String customerID;
-    
-    private String address;
     
     private String status;
     private double total;
@@ -25,19 +24,18 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(String billID, String customerID, String address, String status, double total, Date dateOder) {
+    public Bill(String billID, String customerID,  String status, double total, Date dateOder) {
         this.billID = billID;
         this.customerID = customerID;
-        this.address = address;
+
         this.status = status;
         this.total = total;
         this.dateOder = dateOder;
         
     }
-    public Bill( String customerID, String address, String status, double total) {
+    public Bill( String customerID, String status, double total) {
         //this.billID = billID;
         this.customerID = customerID;
-        this.address = address;
         this.status = status;
         this.total = total;
         //this.dateOder = dateOder;
@@ -60,13 +58,6 @@ public class Bill {
         this.customerID = customerID;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getStatus() {
         return status;
@@ -91,4 +82,9 @@ public class Bill {
     public void setDateOder(Date dateOder) {
         this.dateOder = dateOder;
     }
+
+  
+
+   
+    
 }

@@ -7,42 +7,77 @@ package model;
 
 /**
  *
- * @author N
+ * @author Nguyen
  */
 public class Product {
     private String productID;
-    private String CategoryID;//mã loại sản phẩm
-    private String CategoryName;//tên loại sản phẩm
-    private String SupplierID;  // MÃ Nhà cung cấp
-    private String SupplierName; // TÊN NHÀ CUNG CẤP
-    private String productName;// TÊN SẢN PHẨM
-    private String productImage;// HÌNH ẢNH SẢN PHẨM
-    private int productPrice;// GIÁ
-    private String productDescribe;//MÔ TẢ
-    private String productStatus;// TÌNHTRẠNG 
+    private String productCategoryID;
+    private String productSupplier;  // Nhà cung cấp
+    private String productName;
+    private String productImage;
+    private double productPrice;
+    private String productDateCheckIn;
+    private String productDecription;
+    private String productCategoryName;
+    private String productSupplierName;
     
-    public Product(String SupplierName,String productCategoryName, String productName, String productImage, int productPrice, String productDescribe, String productStatus) {
+    private String productStatus;
+    
+     public Product(String SupplierName,String CategoryName, String productName, String productImage, double productPrice, String productDecription, String productStatus) {
         //tenLSP,tenNCC,tenSP,"",gia,ngay,mota,tinht
-        this.CategoryName = productCategoryName;
-        this.SupplierName = SupplierName;
+        this.productCategoryName = CategoryName;
+        this.productSupplierName = SupplierName;
         this.productName = productName;
         this.productImage = productImage;
         this.productPrice = productPrice;
-        this.productDescribe = productDescribe;
+        this.productDecription = productDecription;
         this.productStatus = productStatus;
+    }   
+
+    public String getProductCategoryName() {
+        return productCategoryName;
     }
 
-    public Product(String productID,String productName, int productPrice, String productDescribe, String productStatus) {
+    public void setProductCategoryName(String productCategoryName) {
+        this.productCategoryName = productCategoryName;
+    }
+
+    public String getProductSupplierName() {
+        return productSupplierName;
+    }
+
+    public void setProductSupplierName(String productSupplierName) {
+        this.productSupplierName = productSupplierName;
+    }
+    public Product(String productID, String productCategoryID, String productSupplier, String productName, String productImage, double productPrice, String productDateCheckIn, String productDecription, String productStatus) {
+        this.productID = productID;
+        this.productCategoryID = productCategoryID;
+        this.productSupplier = productSupplier;
+        this.productName = productName;
+        this.productImage = productImage;
+        this.productPrice = productPrice;
+        this.productDateCheckIn = productDateCheckIn;
+        this.productDecription = productDecription;
+        this.productStatus = productStatus;
+    }
+     public Product(String productID,String productName, double productPrice, String productDescribe, String productStatus) {
         this.productID= productID;
         this.productName = productName;
         this.productPrice = productPrice;
-        this.productDescribe = productDescribe;
+        this.productDecription = productDescribe;
         this.productStatus = productStatus;
     }
+
+    public Product(String productID, String productImage)
+    {
+        this.productID = productID;
+        this.productImage = productImage;
+    }
+    
+    
     public Product() {
     }
 
-    
     public String getProductID() {
         return productID;
     }
@@ -51,40 +86,22 @@ public class Product {
         this.productID = productID;
     }
 
-    
-    public String getCategoryID() {
-        return CategoryID;
+    public String getProductCategoryID() {
+        return productCategoryID;
     }
 
-    public void setCategoryID(String CategoryID) {
-        this.CategoryID = CategoryID;
+    public void setProductCategoryID(String productCategoryID) {
+        this.productCategoryID = productCategoryID;
     }
 
-    public String getCategoryName() {
-        return CategoryName;
+    public String getProductSupplier() {
+        return productSupplier;
     }
 
-    public void setCategoryName(String CategoryName) {
-        this.CategoryName = CategoryName;
+    public void setProductSupplier(String productSupplier) {
+        this.productSupplier = productSupplier;
     }
 
-    public String getSupplierID() {
-        return SupplierID;
-    }
-
-    public void setSupplierID(String SupplierID) {
-        this.SupplierID = SupplierID;
-    }
-
-    public String getSupplierName() {
-        return SupplierName;
-    }
-
-    public void setSupplierName(String SupplierName) {
-        this.SupplierName = SupplierName;
-    }
-
-    
     public String getProductName() {
         return productName;
     }
@@ -101,21 +118,28 @@ public class Product {
         this.productImage = productImage;
     }
 
-    public int getProductPrice(){
+    public double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(int productPrice) {
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 
-
-    public String getProductDescribe() {
-        return productDescribe;
+    public String getProductDateCheckIn() {
+        return productDateCheckIn;
     }
 
-    public void setProductDescribe(String productDescribe) {
-        this.productDescribe = productDescribe;
+    public void setProductDateCheckIn(String productDateCheckIn) {
+        this.productDateCheckIn = productDateCheckIn;
+    }
+
+    public String getProductDecription() {
+        return productDecription;
+    }
+
+    public void setProductDecription(String productDecription) {
+        this.productDecription = productDecription;
     }
 
 
@@ -126,5 +150,7 @@ public class Product {
     public void setProductStatus(String productStatus) {
         this.productStatus = productStatus;
     }
-
+    
+   
+    
 }

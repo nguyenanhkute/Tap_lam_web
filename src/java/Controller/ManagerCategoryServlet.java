@@ -16,7 +16,7 @@ import model.Category;
 
 /**
  *
- * @author N
+ * @author Nguyen
  */
 public class ManagerCategoryServlet extends HttpServlet {
  

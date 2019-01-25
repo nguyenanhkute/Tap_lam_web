@@ -4,6 +4,7 @@
     Author     : N
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,8 +16,24 @@
         <div id="header">
             <div class="inHeader">
 		<div class="mosAdmin">
-		Hallo, Mas Administrator<br>
-		<a href="">Lihat website</a> | <a href="">Help</a> | <a href="login.html">Keluar</a>
+		Administrator<br>
+                <%
+                            //UserDAO usdao = new UserDAO();
+                            User user = null;
+                            if (session.getAttribute("user") != null)
+                            {
+                                user = (User) session.getAttribute("user");
+                            }
+
+                %>
+		<ul>
+                           <%if (user == null) {%>
+                           <li><a href="login.jsp">Đăng nhập</a></li> 
+                           <%}%>
+                           <%if (user != null) {%>
+                           <li><a href="login.jsp">Admin</a></li> 
+                           <%}%>
+                </ul>
 		</div>
                 <div class="clear"></div>
             </div>

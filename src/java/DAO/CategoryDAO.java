@@ -5,24 +5,65 @@
  */
 package DAO;
 
-import connect.DBConnect;
+import connect.SQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.Category;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Category;
-
 /**
  *
- * @author N
+ * @author Nguyen
  */
 public class CategoryDAO {
-    
-    public ArrayList<Category> getListCategory() throws SQLException{
-        Connection connection = DBConnect.getConnecttion();
+    public ArrayList<Category> getListCategoryByDirectory(String directory_id) throws SQLException
+    {
+        Connection connection = SQLConnection.getConnection();
+        String SQL = "SELECT * FROM LOAISANPHAM WHERE MaDM = '"+ directory_id+"'";
+        ArrayList<Category> list = new ArrayList<>();
+        try 
+        {
+            PreparedStatement ps = connection.prepareCall(SQL);
+            ResultSet rs = ps.executeQuery();
+
+           
+                while ( rs.next())
+                {
+                    Category category = new Category();
+                    category.setCategoryID(rs.getString("MaLoaiSP"));
+                    category.setCategoryName(rs.getString("TenLoaiSP"));
+
+                    list.add(category);
+                }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+        
+               
+    }
+    public String getNameByID(String id) throws SQLException
+    {
+        String name = null;
+        Connection connection = SQLConnection.getConnection();
+        String sql = "SELECT TenLoaiSP FROM LOAISANPHAM WHERE MaLoaiSP = '" + id + "'";
+   
+        PreparedStatement ps = connection.prepareCall(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next())
+        {
+            name = rs.getString("TenLoaiSP");   
+        }
+        
+        return name;      
+    }
+     
+   public ArrayList<Category> getListCategory() throws SQLException{
+        Connection connection = SQLConnection.getConnection();
         ArrayList<Category> list = new ArrayList<>();
         String sql = "select MaLoaiSP, TenLoaiSP, TenDM from LOAISANPHAM LSP JOIN DANHMUC DM ON LSP.MaDM = DM.MaDM ";
         try {
@@ -43,7 +84,7 @@ public class CategoryDAO {
     }
     
     public ArrayList<Category> getListTypeName() throws SQLException{
-        Connection connection = DBConnect.getConnecttion();
+        Connection connection = SQLConnection.getConnection();
         ArrayList<Category> list = new ArrayList<>();
         String sql = "select MaDM,TenDM from DANHMUC ";
         try {
@@ -51,7 +92,7 @@ public class CategoryDAO {
         ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Category category = new Category();
-                category.setTypeID(rs.getString("MaDM"));
+                //category.setTypeID(rs.getString("MaDM"));
                 category.setTypeName(rs.getString("TenDM"));
                 list.add(category);
             }
@@ -63,7 +104,7 @@ public class CategoryDAO {
     }
     public String getTypeID(String str){
         try {
-            Connection connection = DBConnect.getConnecttion();
+            Connection connection = SQLConnection.getConnection();
             String sqls = "select MaDM from DANHMUC WHERE TenDM="+str+"";
             PreparedStatement ps = connection.prepareCall(sqls);
             ps.setString(1,str);
@@ -79,7 +120,7 @@ public class CategoryDAO {
     public boolean insertCategoryDAO(Category c)
     {
       try{
-         Connection connection = DBConnect.getConnecttion();
+         Connection connection = SQLConnection.getConnection();
          String sql = "EXEC lsp_Insert ?,?";
          PreparedStatement ps = connection.prepareCall(sql);
          ps.setString(1, c.getTypeName());
@@ -95,7 +136,7 @@ public class CategoryDAO {
     public boolean updateCategoryDAO(Category c)
     {
       try{
-         Connection connection = DBConnect.getConnecttion();
+         Connection connection = SQLConnection.getConnection();
          String sql = "EXEC UPDATE_LSP ?,?";
          PreparedStatement ps = connection.prepareCall(sql);
          ps.setString(1, c.getCategoryID());
@@ -107,13 +148,19 @@ public class CategoryDAO {
             return false;
         }
     }
-        public static void main(String[] args) throws SQLException
+    public static void main(String[] args) throws SQLException 
     {
-        CategoryDAO sp= new CategoryDAO();
-        sp.updateCategoryDAO(new Category( "LSP0002","BANH DOREMON", "Câu d?i")); 
-   
-    }
+        CategoryDAO dao = new CategoryDAO();
+        for (Category ds : dao.getListCategoryByDirectory("TT"))
+        {
+            System.out.println(ds.getCategoryID() + "- " + ds.getCategoryName());
+        }
         
-    
-}
+        System.out.println("============");
+        dao.getNameByID("LD");
+    }
 
+   
+    
+   
+}

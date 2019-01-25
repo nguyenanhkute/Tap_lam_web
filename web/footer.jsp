@@ -1,7 +1,7 @@
 <%-- 
     Document   : footer
-    Created on : Oct 14, 2018, 8:54:23 PM
-    Author     : N
+    Created on : Oct 2, 2018, 6:08:09 PM
+    Author     : Nguyen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,7 +37,7 @@
 		<div class="col-md-4 box_3">
 			<h3>Địa chỉ cửa hàng</h3>
 			<address class="address">
-              <p>Cửa hàng bánh kẹo Tết <br>khu phố 6, Linh Trung , Thủ Đức, Tp Hồ Chí Minh</p>
+              <p>Khu Phố 6 <br>P.Linh Trung, Quận Thủ Đức, Tp Hồ Chí Minh.</p>
                          </address>
            <ul class="footer_social">
 			  <li><a href=""> <i class="fb"> </i> </a></li>
@@ -52,7 +52,7 @@
                             <dt></dt>
                             <dd>Số điện thoại: <span> +84 374 370 101</span></dd>                           
                             <dd>FAX: <span>+81 800 658 584</span></dd>
-                            <dd>E-mail:&nbsp; <a href="mailto@example.com">tetshop.com</a></dd>
+                            <dd>E-mail:&nbsp; <a href="mailto@example.com">info(at)tetshop.com</a></dd>
                         </dl>
 
 			
@@ -73,6 +73,8 @@
 		<div class="clearfix"> </div>
 		</div>
 		<div class="footer_bottom">
+			<div class="copy">
+                <p>Copyright © 2018 Tet_shop. All Rights Reserved. </p>
 	        </div>
 	    </div>
 	</div>

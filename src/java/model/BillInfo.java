@@ -7,32 +7,28 @@ package model;
 
 /**
  *
- * @author N
+ * @author Nguyen
  */
 public class BillInfo {
-    private String billID;
+    
+   
     private String productID;
-    private String customerID;
+   
     private int quantity;
+    
     
 
     public BillInfo() {
     }
 
-    public BillInfo(String billID, String productID, String customerID, int quantity) {
-        this.billID = billID;
+    public BillInfo( String productID,  int quantity) {
+        
         this.productID = productID;
-        this.customerID = customerID;
+      
         this.quantity = quantity;
     }
-
-    public String getBillID() {
-        return billID;
-    }
-
-    public void setBillID(String billID) {
-        this.billID = billID;
-    }
+   
+    
 
     public String getProductID() {
         return productID;
@@ -42,13 +38,7 @@ public class BillInfo {
         this.productID = productID;
     }
 
-    public String getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(String customerID) {
-        this.customerID = customerID;
-    }
+   
 
     public int getQuantity() {
         return quantity;
@@ -57,4 +47,6 @@ public class BillInfo {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    
+    
 }

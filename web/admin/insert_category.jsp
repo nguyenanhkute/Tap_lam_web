@@ -22,7 +22,7 @@
             function validateForm(){
                 
                 var nameCategory= document.myForm.tenLSP.value;
-                if (nameCategory=="" && tendanhmuc.value=="--Danh mục--")
+                if (nameCategory=="" && document.myForm.tendanhmuc.value=="--Danh mục--")
                 {
                     alert("Bạn chưa nhập thông tin");
                 }
@@ -30,7 +30,7 @@
                 {
                     alert("Bạn chưa nhập tên loại sản phẩm");
                 }
-                else if(tendanhmuc.value=="--Danh mục--")
+                else if(document.myForm.tendanhmuc.value=="--Danh mục--")
                 {
                     alert("Bạn chưa chọn danh mục");
                 }
@@ -39,7 +39,7 @@
     </head>
     
     <body>
-        <form name="myForm" action="/WebApplication1/ManagerCategoryServlet" method="post">
+        <form name="myForm" action="/shop/AdminCategoryServlet" method="post">
             <%--bắt lỗi khi nhập tên loại sp--%>
         <%
             String error="";
@@ -86,10 +86,14 @@
                             <input type="submit" class="button" value="Lưu dữ liệu" onclick="validateForm()">
                         </td></tr>
                     </table>
+                        </div> 
+                        </div> 
                 </form>  
-                </div> 
+                
             <div class ="clear"></div>
             <%--footer--%>
+            
             <jsp:include page="footer.jsp"></jsp:include>
+        
     </body>
 </html>

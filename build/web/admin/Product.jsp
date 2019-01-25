@@ -29,8 +29,13 @@
             <jsp:include page="menu.jsp"></jsp:include>
            <div id="rightContent">
                
-            <h2>Quản lí sản phẩm</h2>
-            <a href="/WebApplication1/admin/insert_product.jsp"  class="button" > Thêm danh mục </a>
+            <h2  >Quản lí sản phẩm</h2>
+            <a href="/shop/admin/insert_product.jsp"  class="button" > Thêm sản phẩm </a>
+            <p  class="wel">
+            <form  action="/shop/SearchProductAdmin" method = "POST">
+                <input type="text" id="searchID" name="search" class="textbox" value="Tìm kiếm" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm';}">
+                <div id="response"> </div>
+            </form>
 		<table class="data">
 			<tr class="data">
 				<th class="data" width="30px">STT</th>
@@ -52,15 +57,14 @@
 				<td class="data" width="30px"><%=count%></td>
 				<td class="data"><%=prd.getProductID()%></td>
                                 <td class="data"><%=prd.getProductName()%></td>
-                                <td class="data"><%=prd.getCategoryName()%></td>
-                                <td class="data"><%=prd.getSupplierName()%></td>
+                                <td class="data"><%=prd.getProductCategoryName()%></td>
+                                <td class="data"><%=prd.getProductSupplierName()%></td>
                                 <td class="data"><%=prd.getProductPrice()%></td>
-                                <td class="data" width="75px"><%=prd.getProductDescribe()%></td>
+                                <td class="data" width="75px"><%=prd.getProductDecription()%></td>
                                 <td class="data" width="35px"><%=prd.getProductStatus()%></td>
+                                
 				<td class="data" width="40px">
-				<center>
-				<a href="/WebApplication1/admin/update_product.jsp?command=update&ProductID=<%=prd.getProductID()%>">Sửa</a>
-				</center>
+				<a href="/shop/admin/update_product.jsp?command=update&ProductID=<%=prd.getProductID()%>">Sửa</a>
 				</td>
                         </tr>
                         <%}%>
@@ -72,3 +76,4 @@
         </div>
     </body>
 </html>
+

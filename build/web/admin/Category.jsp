@@ -31,7 +31,7 @@
                
             <h2>Quản lí loại sản phẩm</h2>
                 
-            <a href="/WebApplication1/admin/insert_category.jsp"  class="button" > Thêm danh mục </a>
+            <a href="/shop/admin/insert_category.jsp"  class="button" > Thêm loại sản phẩm </a>
             
 		<table class="data">
 			<tr class="data">
@@ -53,7 +53,7 @@
 				<td class="data"><%=category.getTypeName()%></td>
 				<td class="data" width="75px">
 				<center>
-				<a href="/WebApplication1/admin/update_category.jsp?command=update&CategoryID=<%=category.getCategoryID()%>">Sửa</a>
+				<a href="/shop/admin/update_category.jsp?command=update&CategoryID=<%=category.getCategoryID()%>">Sửa</a>
 				</center>
 				</td>
                             </tr>

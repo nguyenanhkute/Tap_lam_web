@@ -4,6 +4,7 @@
     Author     : N
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,12 +15,15 @@
         <link href="${root}/css/mos-style.css" rel='stylesheet' type='text/css' />
     </head>
     <body>
+      
         <div id="leftBar">
 	<ul>
-		<li><a href="${root}/WebApplication1/admin/index.jsp">Trang chủ</a></li>
-                <li><a href="${root}/WebApplication1/admin/Category.jsp">Loại sản phẩm</a></li>
-		<li><a href="${root}/WebApplication1/admin/Product.jsp">Sản phẩm</a></li>
-		<li><a href="${root}/WebApplication1/admin/nhacungcap.jsp">Nhà cung cấp</a></li>
+                
+		<li><a href="${root}/shop/admin/main.jsp">Trang chủ</a></li>
+                <li><a href="${root}/shop/admin/Category.jsp">Loại sản phẩm</a></li>
+		<li><a href="${root}/shop/admin/Product.jsp?page=1">Sản phẩm</a></li>
+		<li><a href="${root}/shop/admin/managerBillPurchase.jsp">Đơn nhập hàng</a></li>
+                <li><a href="${root}/shop/admin/Chart.jsp">Thống kê</a></li>
 	</ul>
 	</div>
     </body>

@@ -11,6 +11,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.CategoryDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -37,7 +38,7 @@
         </script>
     </head>
     <body>
-        <form name="myForm" action="/WebApplication1/ManagerProductServlet" method="doGet">
+       
             <%--bắt lỗi khi nhập tên loại sp--%>
         <%
             String error="";
@@ -54,13 +55,14 @@
             <jsp:include page="menu.jsp"></jsp:include>
             <div id="rightContent">
                 <h3>Thông tin loại sản phẩm </h3>
+                <form name="myForm" action="/shop/AdminProductServlet" method="post">
                     <table width="95%">
                         <%
                         ProductDAO product= new ProductDAO();
                         Product ListProduct= product.getProduct(request.getParameter("ProductID"));
                         %>
-                        <tr><td>
-                                
+                        
+                        
                                 <input type="hidden" name="productID" value="<%=request.getParameter("ProductID")%>">
                             <tr>
                                 <td width="125px"><b>Tên sản phẩm</b></td>
@@ -72,7 +74,7 @@
                             </tr>
                             <tr>
                                 <td width="125px"><b>Mô tả </b></td>    
-                                <td><input type="text" name="productDescribe" value="<%=ListProduct.getProductDescribe()%>"><%=error%></td>
+                                <td><input type="text" name="productDescribe" value="<%=ListProduct.getProductDecription()%>"><%=error%></td>
                             </tr>
                             <tr>
                                 <td width="125px"><b>Trạng thái</b></td>  
@@ -82,13 +84,14 @@
                                 <input type="hidden" name="command" value="update">
                                 <input type="submit" class="button" value="Lưu dữ liệu" onclick="validateForm()">
                                 </td></tr>
-                        </td></tr>    
+                         
                     </table>
+                            </form>
             </div> 
             <div class ="clear"></div>
         </div>
             <%--footer--%>
         <jsp:include page="footer.jsp"></jsp:include>
-        </form>
+        
     </body>
 </html>

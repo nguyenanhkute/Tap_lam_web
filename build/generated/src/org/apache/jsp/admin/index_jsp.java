@@ -73,20 +73,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body>\n");
       out.write("        \n");
       out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "header.jsp", out, false);
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "login.jsp", out, false);
       out.write("\n");
-      out.write("        <div id=\"wrapper\">\n");
-      out.write("            ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "menu.jsp", out, false);
-      out.write("\n");
-      out.write("            ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "content.jsp", out, false);
-      out.write("\n");
-      out.write("            ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "footer.jsp", out, false);
-      out.write("\n");
-      out.write("        </div>\n");
-      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

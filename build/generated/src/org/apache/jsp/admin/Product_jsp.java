@@ -72,18 +72,33 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <link href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${root}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/css/mos-style.css\" rel='stylesheet' type='text/css' />\n");
-      out.write("        \n");
+      out.write("        <link href=\"css/style.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />\t\n");
+      out.write("        <link href=\"css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />\n");
       out.write("        <title>Product</title>\n");
+      out.write("        \n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        \n");
       out.write("        ");
 
             ProductDAO product= new ProductDAO();
-            ArrayList<Product> ListProduct= product.getListProduct();
-             
+            int pages = 1, firstResult =0,  total = 0;
+            if(request.getParameter("pages") != null)
+            {
+                pages = (int) Integer.parseInt(request.getParameter("pages"));
+            }
+            total = product.countProduct();
+            if(total <= 20)
+            {
+                firstResult = 0;
+            }
+            else
+            {
+                firstResult = (pages - 1) * 20;         
+            } 
+            ArrayList<Product> listProduct = product.getListProductPT(firstResult);
         
       out.write("\n");
+      out.write("        \n");
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "header.jsp", out, false);
       out.write("\n");
@@ -93,8 +108,13 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("           <div id=\"rightContent\">\n");
       out.write("               \n");
-      out.write("            <h2>Quản lí sản phẩm</h2>\n");
-      out.write("            <a href=\"/WebApplication1/admin/insert_product.jsp\"  class=\"button\" > Thêm danh mục </a>\n");
+      out.write("            <h2  >Quản lí sản phẩm</h2>\n");
+      out.write("            <a href=\"/shop/admin/insert_product.jsp\"  class=\"button\" > Thêm sản phẩm </a>\n");
+      out.write("            <p  class=\"wel\">\n");
+      out.write("            <form  action=\"/shop/SearchProductAdmin\" method = \"POST\">\n");
+      out.write("                <input type=\"text\" id=\"searchID\" name=\"search\" class=\"textbox\" value=\"Tìm kiếm\" onfocus=\"this.value = '';\" onblur=\"if (this.value == '') {this.value = 'Tìm kiếm';}\">\n");
+      out.write("                <div id=\"response\"> </div>\n");
+      out.write("            </form>\n");
       out.write("\t\t<table class=\"data\">\n");
       out.write("\t\t\t<tr class=\"data\">\n");
       out.write("\t\t\t\t<th class=\"data\" width=\"30px\">STT</th>\n");
@@ -110,7 +130,7 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        ");
 
                             int count =0;// gan STT ban dau
-                            for (Product prd : ListProduct ){
+                            for (Product prd : listProduct ){
                                 count ++;// tang stt
                         
       out.write("\n");
@@ -125,30 +145,132 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print(prd.getProductName());
       out.write("</td>\n");
       out.write("                                <td class=\"data\">");
-      out.print(prd.getCategoryName());
+      out.print(prd.getProductCategoryName());
       out.write("</td>\n");
       out.write("                                <td class=\"data\">");
-      out.print(prd.getSupplierName());
+      out.print(prd.getProductSupplierName());
       out.write("</td>\n");
       out.write("                                <td class=\"data\">");
       out.print(prd.getProductPrice());
       out.write("</td>\n");
       out.write("                                <td class=\"data\" width=\"75px\">");
-      out.print(prd.getProductDescribe());
+      out.print(prd.getProductDecription());
       out.write("</td>\n");
       out.write("                                <td class=\"data\" width=\"35px\">");
       out.print(prd.getProductStatus());
       out.write("</td>\n");
+      out.write("                                \n");
       out.write("\t\t\t\t<td class=\"data\" width=\"40px\">\n");
-      out.write("\t\t\t\t<center>\n");
-      out.write("\t\t\t\t<a href=\"#\">Sửa</a>\n");
-      out.write("\t\t\t\t</center>\n");
+      out.write("\t\t\t\t<a href=\"/shop/admin/update_product.jsp?command=update&ProductID=");
+      out.print(prd.getProductID());
+      out.write("\">Sửa</a>\n");
       out.write("\t\t\t\t</td>\n");
       out.write("                        </tr>\n");
+      out.write("                       \n");
       out.write("                        ");
 }
       out.write("\n");
-      out.write("\t\t</table>\n");
+      out.write("                        </table>\n");
+      out.write("                        <ul class=\"start\" >    \n");
+      out.write("                        ");
+                //Button Previous
+                            int back = 0;
+                            if (pages == 0 || pages == 1) {
+                                back = 1;//Luon la page 1
+                            } else {
+                                back = pages - 1;//Neu pages tu 2 tro len thi back tru 1
+                            }
+                        
+      out.write("\n");
+      out.write("                        <li ><a href=\"/shop/admin/Product.jsp?pages=");
+      out.print(back);
+      out.write("\"><i></i></a></li>\n");
+      out.write("                        ");
+
+                            //Button Number pages
+                            int loop = 0, num = 0;
+                            if ((total / 20) % 2 == 0) {
+                                num = total / 4;
+                            } else {
+                                num = (total + 1) / 20;
+                            }
+                            //Nếu total lẻ thêm 1
+                            if (total % 2 != 0) {
+                                loop = (total / 20) + 1;
+
+                            } else {
+                                //Nếu total chẵn nhỏ hơn fullpage và # fullPage thì thêm 1
+                                if (total < (num * 20) + 20 && total != num * 20) {
+                                    loop = (total / 20) + 1;
+                                } else {
+                                    //Nếu bằng fullPage thì không thêm
+                                    loop = (total / 20);
+                                }
+                            }
+                            //Lap so pages
+                        for (int i = 1; i <= loop; i++) {
+      out.write("\n");
+      out.write("                        ");
+ if (pages == i) {
+      out.write(" \n");
+      out.write("\n");
+      out.write("                        <li><span><a href=\"/shop/admin/Product.jsp?pages=");
+      out.print(i);
+      out.write('"');
+      out.write('>');
+      out.print(i);
+      out.write("</a></span></li>\n");
+      out.write("                        ");
+} else {
+      out.write("\n");
+      out.write("                        <li class=\"arrow\"><a href=\"/shop/admin/Product.jsp?pages=");
+      out.print(i);
+      out.write('"');
+      out.write('>');
+      out.print(i);
+      out.write("</a> </li>\n");
+      out.write("\n");
+      out.write("                        ");
+}
+                             }
+      out.write("\n");
+      out.write("                        ");
+
+                                        //Button Next
+                            int next = 0;
+                            //Nếu total lẻ
+                            if (total % 2 != 0) {
+                                if (pages == (total / 20) + 1) {
+                                    next = pages;//Khong next
+                                } else {
+                                    next = pages + 1;//Co next
+                                }
+                            } else {
+                                //Nếu total chẵn nhỏ hơn fullpage
+                                //Và không fullPage thì thêm 1
+                                if (total < (num * 20) + 20 && total != num * 20) {
+                                    if (pages == (total / 20) + 1) {
+                                        next = pages;//Khong next
+                                    } else {
+                                        next = pages + 1;//Co next
+                                    }
+                                } else {
+                                    //Nếu fullPage đến trang cuối dừng
+                                    //Chưa tới trang cuối thì được next
+                                    if (pages == (total / 20)) {
+                                        next = pages;//Khong next
+                                    } else {
+                                        next = pages + 1;//Co next
+                                    }
+                                }
+                            }
+                        
+      out.write("\n");
+      out.write("                        <li ><a href=\"product.jsp?pages=");
+      out.print(next);
+      out.write("\"><i class=\"next\"></i></a></li>\n");
+      out.write("                    </ul>\n");
+      out.write("\t\t\n");
       out.write("            </div>\n");
       out.write("            <div class=\"clear\"></div>\n");
       out.write("            ");
@@ -158,6 +280,7 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
+      out.write("\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

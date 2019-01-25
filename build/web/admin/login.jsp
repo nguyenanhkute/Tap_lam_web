@@ -23,12 +23,13 @@
         <div id="loginForm">
             <div class="headLoginForm">ĐĂNG NHẬP</div>
             <div class="fieldLogin">
-            <form method="POST" action="">
-            <label>Tên đăng nhập</label><br>
-            <input type="text" class="login"><br>
-            <label>Mật khẩu</label><br>
-            <input type="password" class="login"><br>
-            <input type="submit" class="button" value="Đăng nhập">
+            <form  action="/shop/LoginServlet" method="POST">
+                <label >Tên đăng nhập</label><br>
+                <input type="text" class="login" name="username"><br>
+                <label>Mật khẩu</label><br>
+                <input type="password" class="login" name="password"><br>
+                <input type="hidden" value="admin" name ="command">
+                <input type="submit" class="button" value="Đăng nhập">
             </form>
             </div>
         </div>

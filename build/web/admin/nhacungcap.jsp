@@ -44,8 +44,8 @@
 				<td class="data">Data Anda</td>
 				<td class="data" width="75px">
 				<center>
-				<a href="#"><img src="mos-css/img/oke.png"></a>&nbsp;&nbsp;&nbsp;
-				<a href="#"><img src="mos-css/img/detail.png"></a>
+				<a href="#"><img src="mos-css/images/oke.png"></a>&nbsp;&nbsp;&nbsp;
+				<a href="#"><img src="mos-css/images/detail.png"></a>
 				</center>
 				</td>
                         </tr>

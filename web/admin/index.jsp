@@ -1,8 +1,4 @@
-<%-- 
-    Document   : index
-    Created on : Nov 23, 2018, 12:04:29 AM
-    Author     : N
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,12 +14,6 @@
     </head>
     <body>
         
-        <jsp:include page="header.jsp"></jsp:include>
-        <div id="wrapper">
-            <jsp:include page="menu.jsp"></jsp:include>
-            <jsp:include page="content.jsp"></jsp:include>
-            <jsp:include page="footer.jsp"></jsp:include>
-        </div>
-        
+        <jsp:include page="login.jsp"></jsp:include>
     </body>
 </html>

@@ -22,14 +22,14 @@
             function validateForm(){
                 
                 var tensp= document.myForm.tenSP.value;
-                var tenncc= tenNCC.value;
-                var tenlsp= tenLSP.value;
+                var tenncc= document.myForm.tenNCC.value;
+                var tenlsp= document.myForm.tenLSP.value;
                 var GIA= document.myForm.gia.value ;
                 var MOTA= document.myForm.mota.value ;
                 var TINHTRANG= document.myForm.tinhtrang.value;
                 if (tensp==""||tenncc=="--Nhà cung cấp--"||tenlsp=="--LOẠI SP--"||GIA==""||MOTA==""||TINHTRANG=="")
                 {
-                    alert("Bạn chưa nhập thông tin");
+                    alert("Bạn chưa nhập đủ thông tin");
                     return false;
                 }
                 return true;
@@ -37,7 +37,7 @@
         </script>
     </head>
     <body>
-        <form name="myForm" action="/WebApplication1/ManagerProductServlet" method="post">
+        <form name="myForm" action="/shop/AdminProductServlet" method="post">
             <%--bắt lỗi khi nhập tên loại sp--%>
         <%
             String error="";
@@ -75,7 +75,7 @@
                                 <% 
                                     for (Product product : ListCategoryName){
                                 %>
-                                <option value="<%=product.getCategoryName()%>"><%=product.getCategoryName()%></option>
+                                <option value="<%=product.getProductCategoryName()%>"><%=product.getProductCategoryName()%></option>
                                 <%}%>
                             </select>
                             </td>
@@ -90,7 +90,7 @@
                                 <% 
                                     for (Product product1 : ListSupplierName){
                                 %>
-                                <option value="<%=product1.getSupplierName()%>"><%=product1.getSupplierName()%></option>
+                                <option value="<%=product1.getProductSupplierName()%>"><%=product1.getProductSupplierName()%></option>
                                 <%}%>
                             </select>
                             </td>
@@ -125,11 +125,13 @@
                             <input type="submit" class="button" value="Lưu dữ liệu" onclick="validateForm()">
                         </td></tr>
                     </table>
-                </form>  
+                 
                 </div> 
             <div class ="clear"></div>
             <%--footer--%>
             <jsp:include page="footer.jsp"></jsp:include>
-        
+            
+        </div>
+            </form> 
     </body>
 </html>
